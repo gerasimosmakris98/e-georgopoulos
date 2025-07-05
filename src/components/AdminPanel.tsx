@@ -3,13 +3,14 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useAuth } from '@/contexts/AuthContext';
-import { Settings, User, Briefcase, GraduationCap, Award, BookOpen, Mail, LogOut } from 'lucide-react';
+import { Settings, User, Briefcase, GraduationCap, Award, BookOpen, Mail, BarChart3, LogOut } from 'lucide-react';
 import PersonalInfoEditor from './admin/PersonalInfoEditor';
 import ExperienceEditor from './admin/ExperienceEditor';
 import EducationEditor from './admin/EducationEditor';
 import CertificationEditor from './admin/CertificationEditor';
 import ArticleEditor from './admin/ArticleEditor';
 import ContactEditor from './admin/ContactEditor';
+import AnalyticsEditor from './admin/AnalyticsEditor';
 
 const AdminPanel: React.FC = () => {
   const { logout } = useAuth();
@@ -49,7 +50,7 @@ const AdminPanel: React.FC = () => {
             </CardHeader>
             <CardContent>
               <Tabs value={activeTab} onValueChange={setActiveTab}>
-                <TabsList className="grid w-full grid-cols-3 lg:grid-cols-6">
+                <TabsList className="grid w-full grid-cols-3 lg:grid-cols-7">
                   <TabsTrigger value="personal" className="flex items-center space-x-1">
                     <User className="w-4 h-4" />
                     <span className="hidden sm:inline">Personal</span>
@@ -73,6 +74,10 @@ const AdminPanel: React.FC = () => {
                   <TabsTrigger value="contact" className="flex items-center space-x-1">
                     <Mail className="w-4 h-4" />
                     <span className="hidden sm:inline">Contact</span>
+                  </TabsTrigger>
+                  <TabsTrigger value="analytics" className="flex items-center space-x-1">
+                    <BarChart3 className="w-4 h-4" />
+                    <span className="hidden sm:inline">Analytics</span>
                   </TabsTrigger>
                 </TabsList>
 
@@ -98,6 +103,10 @@ const AdminPanel: React.FC = () => {
 
                 <TabsContent value="contact" className="mt-6">
                   <ContactEditor />
+                </TabsContent>
+
+                <TabsContent value="analytics" className="mt-6">
+                  <AnalyticsEditor />
                 </TabsContent>
               </Tabs>
             </CardContent>

@@ -90,13 +90,6 @@ const AdminLogin: React.FC = () => {
               {isLoading ? "Signing in..." : "Sign In"}
             </Button>
           </form>
-          <div className="mt-4 p-3 bg-muted/50 rounded-lg">
-            <p className="text-xs text-muted-foreground text-center">
-              <strong>Default credentials:</strong><br />
-              Email: stgeorgo141@gmail.com<br />
-              Password: Efstathios2025!
-            </p>
-          </div>
         </CardContent>
       </Card>
     </div>
