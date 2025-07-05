@@ -30,11 +30,15 @@ export const useAnalytics = () => {
 
     // Get existing data
     const existingData = localStorage.getItem('portfolio_analytics');
-    const data = existingData ? JSON.parse(existingData) : { views: [], visitors: new Set() };
+    const data = existingData ? JSON.parse(existingData) : { views: [], visitors: [] };
     
     // Add new view
     data.views.push(view);
-    data.visitors.add(navigator.userAgent);
+    
+    // Add visitor if not already tracked
+    if (!data.visitors.includes(navigator.userAgent)) {
+      data.visitors.push(navigator.userAgent);
+    }
     
     // Keep only last 1000 views
     if (data.views.length > 1000) {
@@ -44,7 +48,7 @@ export const useAnalytics = () => {
     // Save back
     localStorage.setItem('portfolio_analytics', JSON.stringify({
       views: data.views,
-      visitors: Array.from(data.visitors)
+      visitors: data.visitors
     }));
     
     // Update state

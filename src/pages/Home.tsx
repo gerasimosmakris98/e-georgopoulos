@@ -7,9 +7,6 @@ import { useData } from "@/contexts/DataContext";
 
 const Home = () => {
   const { personalInfo } = useData();
-  
-  console.log('Home personalInfo:', personalInfo);
-  
   return (
     <section className="min-h-screen bg-background">
       <div className="container mx-auto px-4 md:px-6 min-h-screen flex items-center">
