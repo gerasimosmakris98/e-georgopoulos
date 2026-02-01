@@ -1,0 +1,48 @@
+# Efstathios Georgopoulos - Professional Portfolio
+
+> Financial Crime Compliance Expert & Blockchain Specialist
+
+## About
+Multilingual Compliance & Blockchain Specialist with deep expertise in AML/CFT, fraud detection, and forensic financial analysis. Currently working as Financial Crime Compliance Quality Assurance Analyst at Ebury, Madrid, Spain.
+
+## Experience Summary
+- Financial Crime Compliance Quality Assurance Analyst at Ebury (Current)
+- Former Compliance roles at American Express
+- Transaction Monitoring at Eurobank Greece
+- Fraud and AML/CFT Investigation at National Bank of Greece
+
+## Education
+- Master's in Compliance (In Progress) - IMF & Universidad Católica de Ávila
+- MSc in Fintech & Blockchain - ENEB & Universidad Isabel I
+- BA in Spanish Language & Literature - National and Kapodistrian University of Athens
+
+## Certifications
+- Fintech & Digital Transformation
+- Blockchain Certification
+- AML Certifications (Financial Crime Academy and ACAMS)
+- GDPR Compliance
+- Crypto Compliance
+- KYC/CDD
+
+## Pages
+- /: Home - Professional overview and introduction
+- /resume: Complete work experience and education history
+- /blog: Articles on compliance, AML, and financial crime
+- /contact: Contact information and professional links
+
+## Technical Expertise
+- AML/CFT Compliance
+- Blockchain Analysis (Chainalysis)
+- Transaction Monitoring
+- KYC/CDD Procedures
+- Fraud Detection
+- Risk Assessment
+
+## Languages
+- Greek (Native)
+- English (Fluent)
+- Spanish (Advanced)
+
+## Contact
+- LinkedIn: https://www.linkedin.com/in/efstathios-georgopoulos/
+- Location: Madrid, Spain

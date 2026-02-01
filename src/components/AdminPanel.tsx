@@ -16,8 +16,8 @@ const AdminPanel: React.FC = () => {
   const { logout } = useAuth();
   const [activeTab, setActiveTab] = useState('personal');
 
-  const handleLogout = () => {
-    logout();
+  const handleLogout = async () => {
+    await logout();
   };
 
   return (
