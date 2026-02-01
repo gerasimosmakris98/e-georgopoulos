@@ -13,8 +13,12 @@ import Home from "./pages/Home";
 import Resume from "./pages/Resume";
 import BlogListing from "./pages/BlogListing";
 import ContactPage from "./pages/ContactPage";
+import Privacy from "./pages/Privacy";
+import Terms from "./pages/Terms";
+import Cookies from "./pages/Cookies";
 import Admin from "./pages/Admin";
 import NotFound from "./pages/NotFound";
+import CookieConsent from "./components/CookieConsent";
 
 const queryClient = new QueryClient();
 
@@ -24,7 +28,8 @@ const AnalyticsTracker = () => {
   
   useEffect(() => {
     trackPageView(location.pathname);
-  }, [location, trackPageView]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location.pathname]);
   
   return null;
 };
@@ -47,11 +52,15 @@ const App = () => (
                     <Route path="/resume" element={<Resume />} />
                     <Route path="/blog" element={<BlogListing />} />
                     <Route path="/contact" element={<ContactPage />} />
+                    <Route path="/privacy" element={<Privacy />} />
+                    <Route path="/terms" element={<Terms />} />
+                    <Route path="/cookies" element={<Cookies />} />
                     <Route path="*" element={<NotFound />} />
                   </Routes>
                 </Layout>
               } />
             </Routes>
+            <CookieConsent />
           </BrowserRouter>
         </TooltipProvider>
       </DataProvider>

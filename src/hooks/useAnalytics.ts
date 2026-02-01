@@ -1,16 +1,11 @@
-import { useEffect, useState } from 'react';
-
-interface PageView {
-  path: string;
-  timestamp: number;
-  userAgent: string;
-}
+import { useState, useCallback, useRef } from 'react';
+import { supabase } from '@/integrations/supabase/client';
 
 interface AnalyticsData {
   totalViews: number;
   uniqueViews: number;
   topPages: { path: string; views: number }[];
-  recentViews: PageView[];
+  recentViews: { path: string; created_at: string; user_agent: string | null }[];
 }
 
 export const useAnalytics = () => {
@@ -20,71 +15,82 @@ export const useAnalytics = () => {
     topPages: [],
     recentViews: []
   });
+  
+  const trackedPaths = useRef<Set<string>>(new Set());
 
-  const trackPageView = (path: string) => {
-    const view: PageView = {
-      path,
-      timestamp: Date.now(),
-      userAgent: navigator.userAgent
-    };
-
-    // Get existing data
-    const existingData = localStorage.getItem('portfolio_analytics');
-    const data = existingData ? JSON.parse(existingData) : { views: [], visitors: [] };
-    
-    // Add new view
-    data.views.push(view);
-    
-    // Add visitor if not already tracked
-    if (!data.visitors.includes(navigator.userAgent)) {
-      data.visitors.push(navigator.userAgent);
+  const trackPageView = useCallback(async (path: string) => {
+    // Prevent duplicate tracking for same path in same session
+    const sessionKey = `${path}-${Date.now().toString().slice(0, -4)}`;
+    if (trackedPaths.current.has(sessionKey)) {
+      return;
     }
-    
-    // Keep only last 1000 views
-    if (data.views.length > 1000) {
-      data.views = data.views.slice(-1000);
+    trackedPaths.current.add(sessionKey);
+
+    // Check cookie consent
+    const consent = localStorage.getItem('cookie_consent');
+    if (consent === 'rejected') {
+      return;
     }
-    
-    // Save back
-    localStorage.setItem('portfolio_analytics', JSON.stringify({
-      views: data.views,
-      visitors: data.visitors
-    }));
-    
-    // Update state
-    updateAnalytics(data);
-  };
 
-  const updateAnalytics = (data: any) => {
-    const pathCounts: Record<string, number> = {};
-    data.views.forEach((view: PageView) => {
-      pathCounts[view.path] = (pathCounts[view.path] || 0) + 1;
-    });
-
-    const topPages = Object.entries(pathCounts)
-      .map(([path, views]) => ({ path, views: views as number }))
-      .sort((a, b) => b.views - a.views)
-      .slice(0, 5);
-
-    setAnalytics({
-      totalViews: data.views.length,
-      uniqueViews: data.visitors.length,
-      topPages,
-      recentViews: data.views.slice(-10).reverse()
-    });
-  };
-
-  useEffect(() => {
-    // Load existing analytics on mount
-    const existingData = localStorage.getItem('portfolio_analytics');
-    if (existingData) {
-      const data = JSON.parse(existingData);
-      updateAnalytics(data);
+    try {
+      await supabase.from('analytics').insert({
+        path,
+        user_agent: navigator.userAgent,
+        referrer: document.referrer || null,
+        ip_hash: null
+      } as any);
+    } catch (error) {
+      console.error('Failed to track page view:', error);
     }
-    
-    // Track current page view
-    trackPageView(window.location.pathname);
   }, []);
 
-  return { analytics, trackPageView };
+  const fetchAnalytics = useCallback(async () => {
+    try {
+      // Get total views
+      const { count: totalViews } = await supabase
+        .from('analytics')
+        .select('*', { count: 'exact', head: true });
+
+      // Get unique visitors (by user agent - simplified)
+      const { data: allViews } = await supabase
+        .from('analytics')
+        .select('user_agent');
+      
+      const uniqueAgents = new Set(allViews?.map(v => v.user_agent).filter(Boolean));
+      const uniqueViews = uniqueAgents.size;
+
+      // Get top pages
+      const { data: pageData } = await supabase
+        .from('analytics')
+        .select('path');
+      
+      const pathCounts: Record<string, number> = {};
+      pageData?.forEach((view) => {
+        pathCounts[view.path] = (pathCounts[view.path] || 0) + 1;
+      });
+
+      const topPages = Object.entries(pathCounts)
+        .map(([path, views]) => ({ path, views }))
+        .sort((a, b) => b.views - a.views)
+        .slice(0, 5);
+
+      // Get recent views
+      const { data: recentData } = await supabase
+        .from('analytics')
+        .select('path, created_at, user_agent')
+        .order('created_at', { ascending: false })
+        .limit(10);
+
+      setAnalytics({
+        totalViews: totalViews || 0,
+        uniqueViews,
+        topPages,
+        recentViews: recentData || []
+      });
+    } catch (error) {
+      console.error('Failed to fetch analytics:', error);
+    }
+  }, []);
+
+  return { analytics, trackPageView, fetchAnalytics };
 };

@@ -5,13 +5,13 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useAuth } from '@/contexts/AuthContext';
 import { useToast } from '@/hooks/use-toast';
-import { Lock, User } from 'lucide-react';
+import { Lock, User, Loader2 } from 'lucide-react';
 
 const AdminLogin: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const { login } = useAuth();
+  const { login, isLoading: authLoading } = useAuth();
   const { toast } = useToast();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -28,7 +28,7 @@ const AdminLogin: React.FC = () => {
     } else {
       toast({
         title: "Login failed",
-        description: "Invalid email or password",
+        description: "Invalid credentials or insufficient permissions",
         variant: "destructive",
       });
     }
@@ -36,12 +36,20 @@ const AdminLogin: React.FC = () => {
     setIsLoading(false);
   };
 
+  if (authLoading) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <Loader2 className="w-8 h-8 animate-spin text-primary" />
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-background flex items-center justify-center px-4">
-      <Card className="w-full max-w-md glass-effect">
+      <Card className="w-full max-w-md glass-effect animate-fade-in">
         <CardHeader className="text-center">
           <div className="flex justify-center mb-4">
-            <div className="p-3 rounded-full bg-primary/10">
+            <div className="p-3 rounded-full bg-primary/10 backdrop-blur">
               <Lock className="w-6 h-6 text-primary" />
             </div>
           </div>
@@ -87,7 +95,14 @@ const AdminLogin: React.FC = () => {
               className="w-full" 
               disabled={isLoading}
             >
-              {isLoading ? "Signing in..." : "Sign In"}
+              {isLoading ? (
+                <>
+                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                  Signing in...
+                </>
+              ) : (
+                "Sign In"
+              )}
             </Button>
           </form>
         </CardContent>

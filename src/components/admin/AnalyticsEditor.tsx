@@ -1,14 +1,28 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { useAnalytics } from '@/hooks/useAnalytics';
-import { BarChart3, Eye, Users, Clock } from 'lucide-react';
+import { BarChart3, Eye, Users, Clock, RefreshCw } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 const AnalyticsEditor: React.FC = () => {
-  const { analytics } = useAnalytics();
+  const { analytics, fetchAnalytics } = useAnalytics();
+
+  useEffect(() => {
+    fetchAnalytics();
+  }, [fetchAnalytics]);
 
   return (
     <div className="space-y-6">
+      {/* Header with Refresh */}
+      <div className="flex items-center justify-between">
+        <h3 className="text-lg font-semibold">Analytics Dashboard</h3>
+        <Button variant="outline" size="sm" onClick={fetchAnalytics}>
+          <RefreshCw className="w-4 h-4 mr-2" />
+          Refresh
+        </Button>
+      </div>
+
       {/* Overview Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <Card className="glass-effect">
@@ -103,7 +117,7 @@ const AnalyticsEditor: React.FC = () => {
                   <div>
                     <span className="font-medium">{view.path === '/' ? 'Home' : view.path}</span>
                     <p className="text-xs text-muted-foreground">
-                      {new Date(view.timestamp).toLocaleString()}
+                      {new Date(view.created_at).toLocaleString()}
                     </p>
                   </div>
                   <Badge variant="outline" className="text-xs">
