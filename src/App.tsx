@@ -19,6 +19,7 @@ import Cookies from "./pages/Cookies";
 import Admin from "./pages/Admin";
 import NotFound from "./pages/NotFound";
 import CookieConsent from "./components/CookieConsent";
+import ChatWidget from "./components/chat/ChatWidget";
 
 const queryClient = new QueryClient();
 
@@ -61,6 +62,7 @@ const App = () => (
               } />
             </Routes>
             <CookieConsent />
+            <ChatWidget />
           </BrowserRouter>
         </TooltipProvider>
       </DataProvider>

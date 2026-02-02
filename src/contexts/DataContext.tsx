@@ -30,6 +30,7 @@ export interface Education {
   degree: string;
   institution: string;
   status: string;
+  period?: string;
   visible: boolean;
 }
 
@@ -38,6 +39,8 @@ export interface Certification {
   name: string;
   issuer: string;
   link?: string;
+  date?: string;
+  credentialUrl?: string;
   visible: boolean;
 }
 
@@ -57,6 +60,7 @@ export interface ContactInfo {
   email: string;
   phone?: string;
   location: string;
+  availability?: string;
   additionalLinks: { name: string; url: string }[];
 }
 
