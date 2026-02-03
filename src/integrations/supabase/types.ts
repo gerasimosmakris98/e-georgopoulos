@@ -14,6 +14,36 @@ export type Database = {
   }
   public: {
     Tables: {
+      about_content: {
+        Row: {
+          features: Json | null
+          highlights: Json | null
+          id: string
+          paragraphs: string[] | null
+          summary: string | null
+          tech_stack: string[] | null
+          updated_at: string
+        }
+        Insert: {
+          features?: Json | null
+          highlights?: Json | null
+          id?: string
+          paragraphs?: string[] | null
+          summary?: string | null
+          tech_stack?: string[] | null
+          updated_at?: string
+        }
+        Update: {
+          features?: Json | null
+          highlights?: Json | null
+          id?: string
+          paragraphs?: string[] | null
+          summary?: string | null
+          tech_stack?: string[] | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
       analytics: {
         Row: {
           country: string | null
@@ -299,6 +329,36 @@ export type Database = {
         }
         Relationships: []
       }
+      languages: {
+        Row: {
+          created_at: string
+          id: string
+          level: number | null
+          name: string
+          order_index: number | null
+          proficiency: string
+          visible: boolean | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          level?: number | null
+          name: string
+          order_index?: number | null
+          proficiency?: string
+          visible?: boolean | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          level?: number | null
+          name?: string
+          order_index?: number | null
+          proficiency?: string
+          visible?: boolean | null
+        }
+        Relationships: []
+      }
       legal_content: {
         Row: {
           content: string
@@ -359,6 +419,72 @@ export type Database = {
           name?: string
           title?: string
           updated_at?: string
+        }
+        Relationships: []
+      }
+      services: {
+        Row: {
+          created_at: string
+          description: string | null
+          features: string[] | null
+          icon: string | null
+          id: string
+          order_index: number | null
+          title: string
+          visible: boolean | null
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          features?: string[] | null
+          icon?: string | null
+          id?: string
+          order_index?: number | null
+          title: string
+          visible?: boolean | null
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          features?: string[] | null
+          icon?: string | null
+          id?: string
+          order_index?: number | null
+          title?: string
+          visible?: boolean | null
+        }
+        Relationships: []
+      }
+      skills: {
+        Row: {
+          category: string
+          created_at: string
+          icon: string | null
+          id: string
+          name: string
+          order_index: number | null
+          proficiency: number | null
+          visible: boolean | null
+        }
+        Insert: {
+          category?: string
+          created_at?: string
+          icon?: string | null
+          id?: string
+          name: string
+          order_index?: number | null
+          proficiency?: number | null
+          visible?: boolean | null
+        }
+        Update: {
+          category?: string
+          created_at?: string
+          icon?: string | null
+          id?: string
+          name?: string
+          order_index?: number | null
+          proficiency?: number | null
+          visible?: boolean | null
         }
         Relationships: []
       }

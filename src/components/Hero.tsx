@@ -1,19 +1,71 @@
-
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ChevronDown, Mail, Linkedin, MapPin, Star, Users, Award, TrendingUp } from "lucide-react";
+import { ChevronDown, Linkedin, MapPin, Star, Award, TrendingUp, Globe } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
+import { Link } from "react-router-dom";
+
+interface PersonalInfo {
+  name: string;
+  title: string;
+  description: string | null;
+  current_position: string | null;
+  location: string | null;
+  badges: string[] | null;
+}
 
 const Hero = () => {
+  const [personalInfo, setPersonalInfo] = useState<PersonalInfo | null>(null);
+  const [stats, setStats] = useState({
+    experience: "4+",
+    certifications: "15+",
+    projects: "30+",
+    languages: "5"
+  });
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [personalRes, expRes, certRes, langRes] = await Promise.all([
+          supabase.from('personal_info').select('*').limit(1).maybeSingle(),
+          supabase.from('experiences').select('id').eq('visible', true),
+          supabase.from('certifications').select('id').eq('visible', true),
+          supabase.from('languages').select('id').eq('visible', true)
+        ]);
+
+        if (personalRes.data) setPersonalInfo(personalRes.data);
+        
+        setStats({
+          experience: "4+",
+          certifications: certRes.data?.length ? `${certRes.data.length}+` : "15+",
+          projects: "30+",
+          languages: langRes.data?.length ? `${langRes.data.length}` : "5"
+        });
+      } catch (error) {
+        console.error('Error fetching hero data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   const scrollToSection = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const stats = [
-    { icon: Star, label: "Years Experience", value: "3+" },
-    { icon: Award, label: "Certifications", value: "15+" },
-    { icon: TrendingUp, label: "Projects", value: "30+" },
-    { icon: Users, label: "Languages", value: "3" }
+  const displayStats = [
+    { icon: Star, label: "Years Experience", value: stats.experience },
+    { icon: Award, label: "Certifications", value: stats.certifications },
+    { icon: TrendingUp, label: "Projects", value: stats.projects },
+    { icon: Globe, label: "Languages", value: stats.languages }
   ];
+
+  const name = personalInfo?.name || "Efstathios Georgopoulos";
+  const title = personalInfo?.title || "Financial Crime & Compliance QA Lead";
+  const currentPosition = personalInfo?.current_position || "Financial Crime Compliance Quality Assurance Lead at Ebury";
+  const description = personalInfo?.description || "Multilingual Compliance & Blockchain Specialist with deep expertise in AML/CFT, fraud detection, and forensic financial analysis.";
+  const location = personalInfo?.location || "Madrid, Spain";
+  const badges = personalInfo?.badges || ['🏛️ Financial Crime Compliance', '⛓️ Blockchain Specialist', '🎓 MSc Fintech & Blockchain', '📍 Madrid, Spain'];
 
   return (
     <section id="hero" className="relative min-h-screen bg-gradient-hero overflow-hidden pt-16 md:pt-0">
@@ -42,43 +94,35 @@ const Hero = () => {
           <div className="text-center mb-8 md:mb-16 fade-in-up">
             {/* Main Heading */}
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mb-4 md:mb-6 leading-tight">
-              <span className="text-primary-foreground">Efstathios</span>
+              <span className="text-primary-foreground">{name.split(' ')[0]}</span>
               <br />
               <span className="bg-gradient-accent bg-clip-text text-transparent animate-shimmer">
-                Georgopoulos
+                {name.split(' ').slice(1).join(' ')}
               </span>
             </h1>
 
             {/* Status Badges - Under the name */}
             <div className="flex flex-wrap justify-center gap-1.5 md:gap-3 mb-6 md:mb-8 stagger-children px-2">
-              <Badge variant="secondary" className="glass-effect text-xs px-2 md:px-4 py-1 md:py-2" style={{ '--i': 0 } as any}>
-                🏛️ Financial Crime Compliance
-              </Badge>
-              <Badge variant="secondary" className="glass-effect text-xs px-2 md:px-4 py-1 md:py-2" style={{ '--i': 1 } as any}>
-                ⛓️ Blockchain Specialist
-              </Badge>
-              <Badge variant="secondary" className="glass-effect text-xs px-2 md:px-4 py-1 md:py-2" style={{ '--i': 2 } as any}>
-                🎓 MSc Fintech & Blockchain
-              </Badge>
-              <Badge variant="secondary" className="glass-effect text-xs px-2 md:px-4 py-1 md:py-2" style={{ '--i': 3 } as any}>
-                📍 Madrid, Spain
-              </Badge>
+              {badges.map((badge, index) => (
+                <Badge key={index} variant="secondary" className="glass-effect text-xs px-2 md:px-4 py-1 md:py-2" style={{ '--i': index } as any}>
+                  {badge}
+                </Badge>
+              ))}
             </div>
             
             {/* Professional Title */}
             <p className="text-base sm:text-lg md:text-xl lg:text-3xl font-medium text-primary-foreground/90 mb-2 md:mb-4 px-4">
-              Financial Crime Compliance Quality Assurance Analyst
+              {title}
             </p>
             
             {/* Current Position */}
             <p className="text-sm sm:text-base md:text-lg text-primary-foreground/80 mb-4 md:mb-6 px-4 font-semibold">
-              Currently at Ebury - Leading Quality Assurance in Financial Crime Compliance
+              {currentPosition}
             </p>
             
             {/* Description */}
             <p className="text-sm sm:text-base md:text-lg text-primary-foreground/80 mb-6 md:mb-12 max-w-4xl mx-auto leading-relaxed px-4">
-              Multilingual Compliance & Blockchain Specialist with deep expertise in AML/CFT, fraud detection, and forensic financial analysis. 
-              Demonstrated success across banking and fintech sectors in Europe with experience working with multiple international regulators.
+              {description}
             </p>
             
             {/* CTA Buttons */}
@@ -86,11 +130,10 @@ const Hero = () => {
               <Button 
                 variant="default" 
                 size="lg"
-                onClick={() => scrollToSection('contact')}
+                asChild
                 className="w-full sm:w-auto min-w-[180px] md:min-w-[200px] text-sm md:text-lg h-12 md:h-14"
               >
-                <Mail className="mr-2 md:mr-3 w-4 md:w-5 h-4 md:h-5" />
-                Get In Touch
+                <Link to="/contact">Get In Touch</Link>
               </Button>
               <Button 
                 variant="outline" 
@@ -108,7 +151,7 @@ const Hero = () => {
 
           {/* Stats Section */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6 mb-8 md:mb-16 stagger-children px-2 md:px-4">
-            {stats.map((stat, index) => (
+            {displayStats.map((stat, index) => (
               <div 
                 key={stat.label} 
                 className="text-center glass-effect p-3 md:p-6 rounded-xl hover:shadow-premium transition-spring hover:scale-105"
@@ -129,7 +172,7 @@ const Hero = () => {
           <div className="text-center mb-6 md:mb-8">
             <div className="flex items-center justify-center text-primary-foreground/70 text-sm md:text-lg px-4">
               <MapPin className="w-4 md:w-5 h-4 md:h-5 mr-2 flex-shrink-0" />
-              <span className="text-center">Madrid, Spain</span>
+              <span className="text-center">{location}</span>
             </div>
           </div>
         </div>

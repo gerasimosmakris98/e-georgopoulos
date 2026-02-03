@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useAuth } from '@/contexts/AuthContext';
-import { Settings, User, Briefcase, GraduationCap, Award, BookOpen, Mail, BarChart3, LogOut } from 'lucide-react';
+import { Settings, User, Briefcase, GraduationCap, Award, BookOpen, Mail, BarChart3, LogOut, Zap, Globe, FileText, MessageSquare } from 'lucide-react';
 import PersonalInfoEditor from './admin/PersonalInfoEditor';
 import ExperienceEditor from './admin/ExperienceEditor';
 import EducationEditor from './admin/EducationEditor';
@@ -11,6 +11,11 @@ import CertificationEditor from './admin/CertificationEditor';
 import ArticleEditor from './admin/ArticleEditor';
 import ContactEditor from './admin/ContactEditor';
 import AnalyticsEditor from './admin/AnalyticsEditor';
+import SkillsEditor from './admin/SkillsEditor';
+import LanguagesEditor from './admin/LanguagesEditor';
+import ServicesEditor from './admin/ServicesEditor';
+import MessagesEditor from './admin/MessagesEditor';
+import LegalEditor from './admin/LegalEditor';
 
 const AdminPanel: React.FC = () => {
   const { logout } = useAuth();
@@ -50,7 +55,7 @@ const AdminPanel: React.FC = () => {
             </CardHeader>
             <CardContent>
               <Tabs value={activeTab} onValueChange={setActiveTab}>
-                <TabsList className="grid w-full grid-cols-3 lg:grid-cols-7">
+                <TabsList className="flex flex-wrap h-auto p-1 gap-1">
                   <TabsTrigger value="personal" className="flex items-center space-x-1">
                     <User className="w-4 h-4" />
                     <span className="hidden sm:inline">Personal</span>
@@ -67,13 +72,33 @@ const AdminPanel: React.FC = () => {
                     <Award className="w-4 h-4" />
                     <span className="hidden sm:inline">Certs</span>
                   </TabsTrigger>
+                  <TabsTrigger value="skills" className="flex items-center space-x-1">
+                    <Zap className="w-4 h-4" />
+                    <span className="hidden sm:inline">Skills</span>
+                  </TabsTrigger>
+                  <TabsTrigger value="languages" className="flex items-center space-x-1">
+                    <Globe className="w-4 h-4" />
+                    <span className="hidden sm:inline">Languages</span>
+                  </TabsTrigger>
+                  <TabsTrigger value="services" className="flex items-center space-x-1">
+                    <Briefcase className="w-4 h-4" />
+                    <span className="hidden sm:inline">Services</span>
+                  </TabsTrigger>
                   <TabsTrigger value="articles" className="flex items-center space-x-1">
                     <BookOpen className="w-4 h-4" />
                     <span className="hidden sm:inline">Articles</span>
                   </TabsTrigger>
+                  <TabsTrigger value="messages" className="flex items-center space-x-1">
+                    <MessageSquare className="w-4 h-4" />
+                    <span className="hidden sm:inline">Messages</span>
+                  </TabsTrigger>
                   <TabsTrigger value="contact" className="flex items-center space-x-1">
                     <Mail className="w-4 h-4" />
                     <span className="hidden sm:inline">Contact</span>
+                  </TabsTrigger>
+                  <TabsTrigger value="legal" className="flex items-center space-x-1">
+                    <FileText className="w-4 h-4" />
+                    <span className="hidden sm:inline">Legal</span>
                   </TabsTrigger>
                   <TabsTrigger value="analytics" className="flex items-center space-x-1">
                     <BarChart3 className="w-4 h-4" />
@@ -97,12 +122,32 @@ const AdminPanel: React.FC = () => {
                   <CertificationEditor />
                 </TabsContent>
 
+                <TabsContent value="skills" className="mt-6">
+                  <SkillsEditor />
+                </TabsContent>
+
+                <TabsContent value="languages" className="mt-6">
+                  <LanguagesEditor />
+                </TabsContent>
+
+                <TabsContent value="services" className="mt-6">
+                  <ServicesEditor />
+                </TabsContent>
+
                 <TabsContent value="articles" className="mt-6">
                   <ArticleEditor />
                 </TabsContent>
 
+                <TabsContent value="messages" className="mt-6">
+                  <MessagesEditor />
+                </TabsContent>
+
                 <TabsContent value="contact" className="mt-6">
                   <ContactEditor />
+                </TabsContent>
+
+                <TabsContent value="legal" className="mt-6">
+                  <LegalEditor />
                 </TabsContent>
 
                 <TabsContent value="analytics" className="mt-6">

@@ -10,7 +10,10 @@ import { useAnalytics } from "./hooks/useAnalytics";
 import { useEffect } from "react";
 import Layout from "./components/Layout";
 import Home from "./pages/Home";
+import About from "./pages/About";
 import Resume from "./pages/Resume";
+import Skills from "./pages/Skills";
+import Services from "./pages/Services";
 import BlogListing from "./pages/BlogListing";
 import ContactPage from "./pages/ContactPage";
 import Privacy from "./pages/Privacy";
@@ -50,7 +53,10 @@ const App = () => (
                 <Layout>
                   <Routes>
                     <Route path="/" element={<Home />} />
+                    <Route path="/about" element={<About />} />
                     <Route path="/resume" element={<Resume />} />
+                    <Route path="/skills" element={<Skills />} />
+                    <Route path="/services" element={<Services />} />
                     <Route path="/blog" element={<BlogListing />} />
                     <Route path="/contact" element={<ContactPage />} />
                     <Route path="/privacy" element={<Privacy />} />

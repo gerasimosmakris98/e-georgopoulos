@@ -18,7 +18,10 @@ const Layout = ({
 
   const menuItems = [
     { label: "Home", path: "/" },
-    { label: "Resume & Experience", path: "/resume" },
+    { label: "About", path: "/about" },
+    { label: "Resume", path: "/resume" },
+    { label: "Skills", path: "/skills" },
+    { label: "Services", path: "/services" },
     { label: "Blog", path: "/blog" },
     { label: "Contact", path: "/contact" }
   ];

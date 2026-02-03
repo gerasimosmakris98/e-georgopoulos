@@ -130,10 +130,23 @@
   .glass-effect {
     @apply bg-background/80 backdrop-blur-md border border-border/50;
   }
+
+  .glass-card-elevated {
+    @apply bg-background/60 backdrop-blur-xl border border-border/30;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  }
+
+  .glass-panel {
+    @apply bg-background/40 backdrop-blur-2xl border border-border/20;
+  }
   
   /* Animation utilities */
   .fade-in-up {
     animation: fadeInUp 0.8s ease-out forwards;
+  }
+
+  .fade-in-scale {
+    animation: fadeInScale 0.6s ease-out forwards;
   }
   
   .stagger-children > * {
@@ -144,12 +157,21 @@
     animation: floating 6s ease-in-out infinite;
   }
 
+  .pulse-glow {
+    animation: pulseGlow 2s ease-in-out infinite;
+  }
+
   .transition-spring {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .transition-fast {
     transition: all 0.2s ease;
+  }
+
+  /* Progress bar animation */
+  .progress-fill {
+    animation: progressFill 1s ease-out forwards;
   }
 
   /* Gradient utilities */
@@ -159,6 +181,10 @@
 
   .bg-gradient-accent {
     background: linear-gradient(135deg, hsl(var(--accent)) 0%, hsl(var(--primary)) 100%);
+  }
+
+  .bg-gradient-glass {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
   }
 
   /* Shadow utilities */
@@ -172,6 +198,10 @@
 
   .shadow-glow {
     box-shadow: 0 0 20px rgba(255, 255, 255, 0.1), 0 10px 25px -3px rgba(0, 0, 0, 0.3);
+  }
+
+  .shadow-glass {
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.05);
   }
 
   /* Text utilities */
@@ -227,6 +257,17 @@
   }
 }
 
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
 @keyframes floating {
   0%, 100% {
     transform: translateY(0px) rotate(0deg);
@@ -242,6 +283,35 @@
   }
   50% {
     background-position: 100% 50%;
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+  }
+}
+
+@keyframes progressFill {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
   }
 }
 
