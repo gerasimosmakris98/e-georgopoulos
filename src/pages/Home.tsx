@@ -52,7 +52,7 @@ const Home = () => {
             transition={{ duration: 15, repeat: Infinity, ease: "easeInOut", delay: 1 }}
             className="absolute -bottom-1/4 -left-1/4 w-[600px] h-[600px] bg-accent/10 rounded-full blur-3xl"
           />
-          <div className="absolute top-0 left-0 w-full h-full bg-[url('/grid-pattern.svg')] opacity-[0.03] z-0" />
+          <div className="absolute top-0 left-0 w-full h-full opacity-[0.03] z-0" />
         </div>
 
         <div className="container mx-auto px-4 md:px-6 relative z-10">
@@ -73,7 +73,8 @@ const Home = () => {
 
             {/* Main Heading */}
             <motion.h1
-              variants={itemVariants}
+              initial={{ opacity: 1, y: 0 }}
+              animate={{ opacity: 1, y: 0 }}
               className="text-5xl sm:text-6xl lg:text-8xl font-playfair font-bold mb-6 leading-[1.1] tracking-tight text-foreground"
             >
               {personalInfo.name.split(" ").map((word, i) => (
@@ -156,7 +157,11 @@ const Home = () => {
                     </div>
                     <h3 className="text-xl font-bold mb-2">{item.title}</h3>
                     <p className="text-muted-foreground text-sm mb-4 flex-grow">{item.desc}</p>
-                    <Link to={item.to} className="inline-flex items-center text-sm font-medium text-primary hover:text-primary/80 transition-colors">
+                    <Link
+                      to={item.to}
+                      className="inline-flex items-center text-sm font-medium text-primary hover:text-primary/80 transition-colors"
+                      aria-label={`Explore ${item.title}`}
+                    >
                       Explore <ArrowRight className="ml-1 w-4 h-4 group-hover:translate-x-1 transition-transform" />
                     </Link>
                   </div>

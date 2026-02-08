@@ -285,7 +285,10 @@ const ChatWidget = () => {
         onClick={() => setIsOpen(!isOpen)}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
-        className="fixed bottom-6 right-6 z-40 group"
+        className={cn(
+          "fixed bottom-6 right-6 z-40 group",
+          isOpen && "hidden sm:block"
+        )}
       >
         <div className={cn(
           "w-14 h-14 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 relative",
