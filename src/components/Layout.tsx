@@ -70,10 +70,10 @@ const Layout = () => {
     <div className="min-h-screen bg-background flex flex-col">
       <nav
         className={cn(
-          "fixed top-4 left-0 right-0 z-50 transition-all duration-500 ease-in-out mx-4 rounded-2xl border border-white/10",
+          "fixed top-4 left-0 right-0 z-50 transition-all duration-500 ease-in-out mx-4 rounded-2xl border",
           isScrolled
-            ? "bg-background/70 backdrop-blur-xl shadow-glass py-2 max-w-7xl mx-auto"
-            : "bg-background/30 backdrop-blur-lg shadow-sm py-3 max-w-7xl mx-auto"
+            ? "bg-background/70 backdrop-blur-xl border-white/10 shadow-glass py-2 max-w-7xl mx-auto"
+            : "bg-transparent border-transparent shadow-none py-4 max-w-7xl mx-auto"
         )}
       >
         <div className="px-4 md:px-6">
@@ -140,43 +140,41 @@ const Layout = () => {
 
           {/* Mobile Menu */}
           {isMenuOpen && (
-            <div className="absolute top-0 left-0 right-0 min-h-screen bg-background/95 backdrop-blur-xl animate-in slide-in-from-top-2 pt-24 pb-8 flex flex-col">
-              <div className="px-6 container mx-auto flex-1 overflow-y-auto">
-                <Accordion type="single" collapsible className="w-full">
-                  {navGroups.map((group, index) => (
-                    <AccordionItem value={`item-${index}`} key={group.title} className="border-b border-white/10">
-                      <AccordionTrigger className="text-lg font-medium py-4 hover:text-primary hover:no-underline">
-                        {group.title}
-                      </AccordionTrigger>
-                      <AccordionContent>
-                        <ul className="flex flex-col gap-2 pb-4 pl-4">
-                          {group.items.map((item) => (
-                            <li key={item.path}>
-                              <Link
-                                to={item.path}
-                                onClick={() => setIsMenuOpen(false)}
-                                className={cn(
-                                  "block py-2 text-base text-muted-foreground transition-colors hover:text-primary",
-                                  location.pathname === item.path && "text-primary font-medium"
-                                )}
-                              >
-                                {item.label}
-                              </Link>
-                            </li>
-                          ))}
-                        </ul>
-                      </AccordionContent>
-                    </AccordionItem>
-                  ))}
-                </Accordion>
+            <div className="absolute top-full left-0 right-0 mt-2 bg-background/95 backdrop-blur-xl border border-white/10 rounded-2xl shadow-glass animate-in slide-in-from-top-2 p-4 flex flex-col max-h-[80vh] overflow-y-auto">
+              <Accordion type="single" collapsible className="w-full">
+                {navGroups.map((group, index) => (
+                  <AccordionItem value={`item-${index}`} key={group.title} className="border-b border-white/10 last:border-0">
+                    <AccordionTrigger className="text-base font-medium py-3 hover:text-primary hover:no-underline">
+                      {group.title}
+                    </AccordionTrigger>
+                    <AccordionContent>
+                      <ul className="flex flex-col gap-2 pb-2 pl-4">
+                        {group.items.map((item) => (
+                          <li key={item.path}>
+                            <Link
+                              to={item.path}
+                              onClick={() => setIsMenuOpen(false)}
+                              className={cn(
+                                "block py-1.5 text-sm text-muted-foreground transition-colors hover:text-primary",
+                                location.pathname === item.path && "text-primary font-medium"
+                              )}
+                            >
+                              {item.label}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
 
-                <div className="mt-8 pt-8 border-t border-white/10">
-                  <Button variant="outline" size="lg" asChild className="w-full rounded-full border-white/10">
-                    <a href="https://www.linkedin.com/in/efstathios-georgopoulos/" target="_blank" rel="noopener noreferrer">
-                      LinkedIn
-                    </a>
-                  </Button>
-                </div>
+              <div className="mt-4 pt-4 border-t border-white/10">
+                <Button variant="outline" size="sm" asChild className="w-full rounded-full border-white/10">
+                  <a href="https://www.linkedin.com/in/efstathios-georgopoulos/" target="_blank" rel="noopener noreferrer">
+                    LinkedIn
+                  </a>
+                </Button>
               </div>
             </div>
           )}

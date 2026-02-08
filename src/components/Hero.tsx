@@ -41,17 +41,15 @@ const Hero = () => {
 
 
 
-      <div className="relative z-10 container mx-auto px-4 md:px-6 min-h-[80vh] flex flex-col justify-center pt-24 md:pt-32 pb-12">
+      <div className="relative z-10 container mx-auto px-4 md:px-6 min-h-[60vh] md:min-h-[80vh] flex flex-col justify-center pt-20 md:pt-32 pb-8 md:pb-12">
         <div className="w-full max-w-6xl mx-auto">
           {/* Main Content */}
           <div className="text-center mb-6 md:mb-10 fade-in-up">
             {/* Main Heading */}
-            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-3 md:mb-6 leading-none tracking-tight">
-              <span className="text-white drop-shadow-md">{personalInfo.name.split(' ')[0]}</span>
-              <br />
-              <span className="text-white drop-shadow-xl tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-white/70">
-                {personalInfo.name.split(' ').slice(1).join(' ')}
-              </span>
+            {/* Main Heading */}
+            <h1 className="font-playfair font-bold mb-3 md:mb-6 leading-none tracking-tight text-5xl sm:text-7xl md:text-8xl lg:text-9xl text-white drop-shadow-md">
+              <span className="block mb-2">{personalInfo.name.split(' ')[0]}</span>
+              <span className="block">{personalInfo.name.split(' ').slice(1).join(' ')}</span>
             </h1>
 
             {/* Status Badges - Under the name */}
