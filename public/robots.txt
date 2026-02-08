@@ -3,4 +3,4 @@ Allow: /
 Disallow: /admin
 Disallow: /api
 
-Sitemap: https://e-georgopoulos.com/sitemap.xml
+Sitemap: https://egeorgopoulos-b2e9b.web.app/sitemap.xml
