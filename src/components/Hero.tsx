@@ -34,7 +34,7 @@ const Hero = () => {
         ]);
 
         if (personalRes.data) setPersonalInfo(personalRes.data);
-        
+
         setStats({
           experience: "4+",
           certifications: certRes.data?.length ? `${certRes.data.length}+` : "15+",
@@ -75,19 +75,19 @@ const Hero = () => {
         <div className="absolute bottom-20 md:bottom-32 left-10 md:left-20 w-24 md:w-80 h-24 md:h-80 bg-primary-light/15 rounded-full blur-3xl floating-animation" style={{ animationDelay: '2s' }}></div>
         <div className="absolute top-1/2 left-1/2 w-20 md:w-64 h-20 md:h-64 bg-accent/5 rounded-full blur-2xl floating-animation" style={{ animationDelay: '4s' }}></div>
       </div>
-      
+
       {/* Geometric Pattern Overlay */}
       <div className="absolute inset-0 opacity-5">
         <svg className="w-full h-full" viewBox="0 0 100 100">
           <defs>
             <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
-              <path d="M 10 0 L 0 0 0 10" fill="none" stroke="currentColor" strokeWidth="0.5"/>
+              <path d="M 10 0 L 0 0 0 10" fill="none" stroke="currentColor" strokeWidth="0.5" />
             </pattern>
           </defs>
           <rect width="100" height="100" fill="url(#grid)" />
         </svg>
       </div>
-      
+
       <div className="relative z-10 container mx-auto px-4 md:px-6 min-h-screen flex items-center">
         <div className="w-full max-w-6xl mx-auto">
           {/* Main Content */}
@@ -109,34 +109,34 @@ const Hero = () => {
                 </Badge>
               ))}
             </div>
-            
+
             {/* Professional Title */}
             <p className="text-base sm:text-lg md:text-xl lg:text-3xl font-medium text-primary-foreground/90 mb-2 md:mb-4 px-4">
               {title}
             </p>
-            
+
             {/* Current Position */}
             <p className="text-sm sm:text-base md:text-lg text-primary-foreground/80 mb-4 md:mb-6 px-4 font-semibold">
               {currentPosition}
             </p>
-            
+
             {/* Description */}
             <p className="text-sm sm:text-base md:text-lg text-primary-foreground/80 mb-6 md:mb-12 max-w-4xl mx-auto leading-relaxed px-4">
               {description}
             </p>
-            
+
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center mb-8 md:mb-16 px-4">
-              <Button 
-                variant="default" 
+              <Button
+                variant="default"
                 size="lg"
                 asChild
                 className="w-full sm:w-auto min-w-[180px] md:min-w-[200px] text-sm md:text-lg h-12 md:h-14"
               >
                 <Link to="/contact">Get In Touch</Link>
               </Button>
-              <Button 
-                variant="outline" 
+              <Button
+                variant="outline"
                 size="lg"
                 asChild
                 className="w-full sm:w-auto min-w-[180px] md:min-w-[200px] text-sm md:text-lg h-12 md:h-14"
@@ -152,8 +152,8 @@ const Hero = () => {
           {/* Stats Section */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6 mb-8 md:mb-16 stagger-children px-2 md:px-4">
             {displayStats.map((stat, index) => (
-              <div 
-                key={stat.label} 
+              <div
+                key={stat.label}
                 className="text-center glass-effect p-3 md:p-6 rounded-xl hover:shadow-premium transition-spring hover:scale-105"
                 style={{ '--i': index } as any}
               >
@@ -176,12 +176,13 @@ const Hero = () => {
             </div>
           </div>
         </div>
-        
+
         {/* Scroll Indicator */}
         <div className="absolute bottom-6 md:bottom-8 left-1/2 transform -translate-x-1/2">
-          <Button 
-            variant="ghost" 
+          <Button
+            variant="ghost"
             size="icon"
+            aria-label="Scroll to About section"
             onClick={() => scrollToSection('about')}
             className="text-primary-foreground/70 hover:text-primary-foreground hover:bg-white/10 animate-bounce"
           >

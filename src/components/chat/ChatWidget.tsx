@@ -132,6 +132,17 @@ const ChatWidget = () => {
     }
   };
 
+  const handleMinimize = () => setIsOpen(false);
+
+  const handleClose = () => {
+    setIsOpen(false);
+    setTimeout(() => {
+      setMessages([
+        { role: 'assistant', content: "Hi there! I'm Efstathios's AI assistant. Ask me anything about Compliance, Blockchain, or my services! ⚡" }
+      ]);
+    }, 300);
+  };
+
   return (
     <>
       <AnimatePresence>
@@ -141,10 +152,16 @@ const ChatWidget = () => {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
             transition={{ type: "spring", duration: 0.4 }}
-            className="fixed bottom-24 right-4 sm:right-6 z-50 w-[90vw] sm:w-[380px] h-[500px] max-h-[70vh] rounded-3xl overflow-hidden glass-card-elevated border border-white/10 shadow-2xl flex flex-col"
+            className={cn(
+              "fixed z-40 flex flex-col overflow-hidden shadow-2xl glass-card-elevated border border-white/10",
+              // Mobile Styles: Fullscreen (minus header/cookies)
+              "inset-0 top-[60px] bottom-0 rounded-none w-full h-auto",
+              // Desktop Styles: Fixed widget
+              "sm:inset-auto sm:bottom-24 sm:right-6 sm:w-[380px] sm:h-[500px] sm:max-h-[70vh] sm:rounded-3xl"
+            )}
           >
             {/* Premium Header */}
-            <div className="bg-white/5 backdrop-blur-md p-4 border-b border-white/5 flex justify-between items-center relative">
+            <div className="bg-white/5 backdrop-blur-md p-4 border-b border-white/5 flex justify-between items-center relative shrink-0">
               {/* Animated Gradient Border Bottom */}
               <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
 
@@ -163,14 +180,26 @@ const ChatWidget = () => {
                 </div>
               </div>
 
-              <Button
-                size="icon"
-                variant="ghost"
-                className="h-8 w-8 rounded-full hover:bg-white/10 text-muted-foreground hover:text-foreground transition-colors"
-                onClick={() => setIsOpen(false)}
-              >
-                <ChevronDown className="w-5 h-5" />
-              </Button>
+              <div className="flex items-center gap-1">
+                <Button
+                  size="icon"
+                  variant="ghost"
+                  aria-label="Minimize Chat"
+                  className="h-8 w-8 rounded-full hover:bg-white/10 text-muted-foreground hover:text-foreground transition-colors"
+                  onClick={handleMinimize}
+                >
+                  <span className="text-xl font-bold mb-3">_</span>
+                </Button>
+                <Button
+                  size="icon"
+                  variant="ghost"
+                  aria-label="Close and Reset Chat"
+                  className="h-8 w-8 rounded-full hover:bg-white/10 text-muted-foreground hover:text-foreground transition-colors"
+                  onClick={handleClose}
+                >
+                  <X className="w-5 h-5" />
+                </Button>
+              </div>
             </div>
 
             {/* Chat Area */}
@@ -220,7 +249,7 @@ const ChatWidget = () => {
             </div>
 
             {/* Input Area */}
-            <div className="p-4 bg-background/40 backdrop-blur-md border-t border-white/5">
+            <div className="p-4 bg-background/40 backdrop-blur-md border-t border-white/5 shrink-0">
               <div className="relative flex items-center gap-2">
                 <input
                   ref={inputRef}
@@ -256,7 +285,7 @@ const ChatWidget = () => {
         onClick={() => setIsOpen(!isOpen)}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
-        className="fixed bottom-6 right-6 z-50 group"
+        className="fixed bottom-6 right-6 z-40 group"
       >
         <div className={cn(
           "w-14 h-14 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 relative",

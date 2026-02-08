@@ -69,7 +69,7 @@ const ContactForm = ({ isOpen, onClose }: ContactFormProps) => {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
       {/* Backdrop */}
-      <div 
+      <div
         className="absolute inset-0 bg-background/80 backdrop-blur-sm"
         onClick={onClose}
       />
@@ -83,6 +83,7 @@ const ContactForm = ({ isOpen, onClose }: ContactFormProps) => {
         <Button
           variant="ghost"
           size="icon"
+          aria-label="Close form"
           className="absolute top-4 right-4 rounded-full"
           onClick={onClose}
         >
