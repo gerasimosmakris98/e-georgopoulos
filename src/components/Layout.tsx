@@ -34,6 +34,7 @@ const Layout = ({
     { label: "Skills", path: "/skills" },
     { label: "Services", path: "/services" },
     { label: "Blog", path: "/blog" },
+    { label: "FAQ", path: "/faqs" },
     { label: "Contact", path: "/contact" }
   ];
 
@@ -138,6 +139,7 @@ const Layout = ({
                 <Link to="/legal/cookies" className="hover:text-primary transition-colors">Cookies Policy</Link>
                 <Link to="/legal/terms" className="hover:text-primary transition-colors">Terms of Use</Link>
                 <Link to="/legal/accessibility" className="hover:text-primary transition-colors">Accessibility</Link>
+                <Link to="/faqs" className="hover:text-primary transition-colors">FAQ</Link>
               </div>
             </div>
           </div>

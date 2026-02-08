@@ -22,6 +22,7 @@ const Skills = lazy(() => import("./pages/Skills"));
 const Services = lazy(() => import("./pages/Services"));
 const BlogListing = lazy(() => import("./pages/BlogListing"));
 const ContactPage = lazy(() => import("./pages/ContactPage"));
+const Faq = lazy(() => import("./pages/Faq"));
 const Admin = lazy(() => import("./pages/Admin"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
@@ -68,6 +69,7 @@ const App = () => (
                       <Route path="/services" element={<Services />} />
                       <Route path="/blog" element={<BlogListing />} />
                       <Route path="/contact" element={<ContactPage />} />
+                      <Route path="/faqs" element={<Faq />} />
 
                       {/* Legal & Compliance Routes */}
                       <Route path="/legal/terms" element={<Terms />} />

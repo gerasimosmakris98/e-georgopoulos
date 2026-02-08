@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.3.0] - 2026-02-08
+
+### Added
+- **New Feature: Compliance Risk Calculator (Alpha)**: Interactive glassmorphic tool for risk assessment simulation.
+- **New Page: FAQ**: Accordion-style "Knowledge Base" covering Compliance, Blockchain, and Services.
+- **Security Hardening**: Revoked public access to `contact_info` table and implemented email scrubbing for privacy.
+- **Design System Polish**:
+    - Global "Glassmorphism" card style.
+    - Standardized `rounded-full` buttons with premium hover effects.
+    - Enforced `Playfair Display` and `Inter` typography.
+- **Chat Widget**: Redesigned with a cleaner "Pulse" button and modern chat window UI.
+
 ## [0.2.1] - 2026-02-08
 
 ### Added
