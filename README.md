@@ -14,6 +14,7 @@ Built with modern web technologies for high performance and design precision.
 *   **Styling:** [Tailwind CSS](https://tailwindcss.com/)
 *   **UI Components:** [shadcn/ui](https://ui.shadcn.com/)
 *   **Backend/Auth:** [Supabase](https://supabase.com/)
+*   **Lovable Project:** [Dashboard](https://lovable.dev/projects/69aa95af-981a-492f-88a2-7f43534b181c)
 
 ## 🛠️ Local Development
 
