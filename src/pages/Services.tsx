@@ -1,4 +1,5 @@
 import React from 'react';
+import { SEO } from "@/components/SEO";
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -87,6 +88,11 @@ const Services: React.FC = () => {
 
   return (
     <div className="container mx-auto px-4 md:px-6 py-12 md:py-16">
+      <SEO
+        title="Services"
+        description="Comprehensive Financial Crime Compliance services including AML/CFT, KYC/KYB, Blockchain Forensics, and Regulatory Advisory."
+        url="/services"
+      />
       {/* Hero Section */}
       <div className="text-center mb-12 md:mb-16 fade-in-up">
         <Badge variant="outline" className="mb-4 md:mb-6 text-sm px-4 py-2 border-primary/20 text-primary bg-primary/5">

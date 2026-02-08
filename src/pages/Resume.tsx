@@ -8,6 +8,7 @@ import {
   Award, Globe, ArrowRight, ExternalLink
 } from 'lucide-react';
 import { useUI } from '@/contexts/UIContext';
+import { SEO } from "@/components/SEO";
 
 const Resume: React.FC = () => {
   const { openLiveCV, openContact } = useUI();
@@ -123,8 +124,11 @@ const Resume: React.FC = () => {
 
   return (
     <div className="container mx-auto px-4 md:px-6 py-12 md:py-16">
-      {/* Header / Intro */}
-      {/* Header / Intro */}
+      <SEO
+        title="Resume"
+        description="Professional experience of Efstathios Georgopoulos. History of roles in AML/CFT, Fraud Analysis, and Compliance at Ebury and other institutions."
+        url="/resume"
+      />
       {/* Header / Intro */}
       <div className="text-center mb-12 fade-in-up">
         <h1 className="text-3xl md:text-5xl lg:text-6xl font-playfair font-bold text-primary mb-2 tracking-tight">Resume</h1>

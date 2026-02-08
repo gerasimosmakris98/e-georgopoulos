@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { SEO } from "@/components/SEO";
 import { motion } from 'framer-motion';
 import {
     Accordion,
@@ -125,6 +126,11 @@ const Faq = () => {
 
     return (
         <div className="min-h-screen bg-transparent py-24 relative overflow-hidden">
+            <SEO
+                title="FAQ"
+                description="Frequently Asked Questions about Compliance services, Blockchain consulting, and collaboration."
+                url="/faqs"
+            />
             <div className="container mx-auto px-4 relative z-10 max-w-4xl">
                 <motion.div
                     variants={containerVariants}

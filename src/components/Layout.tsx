@@ -2,6 +2,8 @@ import { Link, useLocation, Outlet } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
+import { SEO } from "@/components/SEO";
+import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import { cn } from "@/lib/utils";
 import {
   NavigationMenu,
@@ -22,6 +24,9 @@ const Layout = () => {
   const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+
+  // REPLACE WITH YOUR ACTUAL GA MEASUREMENT ID
+  const GA_MEASUREMENT_ID = "G-7RLKYQ54K8";
 
   // Scroll to top is handled by ScrollToTop component in App.tsx now, 
   // but keeping this here implicitly if passing simple children was supported. 
@@ -68,6 +73,8 @@ const Layout = () => {
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
+      <SEO />
+      <GoogleAnalytics gaId={GA_MEASUREMENT_ID} />
       <nav
         className={cn(
           "fixed top-4 left-0 right-0 z-50 transition-all duration-500 ease-in-out mx-4 rounded-2xl border",
