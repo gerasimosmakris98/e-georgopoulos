@@ -2,36 +2,40 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
-
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { DataProvider } from "@/contexts/DataContext";
 import { UIProvider } from "@/contexts/UIContext";
 import ScrollToTop from "@/components/ScrollToTop";
-import Layout from "./components/Layout";
-import Home from "./pages/Home";
-import About from "./pages/About";
-import Services from "./pages/Services";
-import LiveCV from "./pages/LiveCV";
-import Resume from "./pages/Resume";
-import Skills from "./pages/Skills";
-import NotFound from "./pages/NotFound";
-import LegalNotice from "./pages/legal/LegalNotice";
-import Privacy from "./pages/legal/Privacy";
-import Terms from "./pages/legal/Terms";
-import Cookies from "./pages/legal/Cookies";
-import Accessibility from "./pages/legal/Accessibility";
-import Sitemap from "./pages/Sitemap";
+import { Suspense, lazy, useEffect } from "react";
+import { useAnalytics } from "./hooks/useAnalytics";
+
+// Global Components
 import CookieConsent from "./components/CookieConsent";
 import ChatWidget from "./components/chat/ChatWidget";
 import GlobalLoader from "./components/ui/GlobalLoader";
 import GlobalModals from "./components/GlobalModals";
-import { Suspense, lazy, useEffect } from "react";
-import { useAnalytics } from "./hooks/useAnalytics";
+// Core Imports (Main Path)
+import Layout from "./components/Layout";
+import Home from "./pages/Home";
 
-// Lazy Load Pages
+// Lazy Load Secondary Pages
+const About = lazy(() => import("./pages/About"));
+const Services = lazy(() => import("./pages/Services"));
+const Resume = lazy(() => import("./pages/Resume"));
+const LiveCV = lazy(() => import("./pages/LiveCV"));
+const Skills = lazy(() => import("./pages/Skills"));
 const BlogListing = lazy(() => import("./pages/BlogListing"));
 const ContactPage = lazy(() => import("./pages/ContactPage"));
 const Faq = lazy(() => import("./pages/Faq"));
+const Sitemap = lazy(() => import("./pages/Sitemap"));
+const NotFound = lazy(() => import("./pages/NotFound"));
+
+// Legal Pages (Lazy)
+const LegalNotice = lazy(() => import("./pages/legal/LegalNotice"));
+const Privacy = lazy(() => import("./pages/legal/Privacy"));
+const Terms = lazy(() => import("./pages/legal/Terms"));
+const Cookies = lazy(() => import("./pages/legal/Cookies"));
+const Accessibility = lazy(() => import("./pages/legal/Accessibility"));
 
 const queryClient = new QueryClient();
 
