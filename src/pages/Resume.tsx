@@ -124,10 +124,11 @@ const Resume: React.FC = () => {
   ];
 
   return (
-    <div className="container mx-auto px-4 md:px-6 py-12 md:py-16">
+    <div className="min-h-screen bg-background pt-32 pb-24 relative">
       <SEO
-        title="Resume"
-        description="Professional experience of Efstathios Georgopoulos. History of roles in AML/CFT, Fraud Analysis, and Compliance at Ebury and other institutions."
+        title="Professional Experience"
+        description="Detailed resume of Efstathios Georgopoulos - QA Analyst at Ebury and Blockchain specialist."
+        keywords="Efstathios Georgopoulos Resume, Compliance Officer Experience, QA Analyst Ebury"
         url="/resume"
       />
       {/* Header / Intro */}

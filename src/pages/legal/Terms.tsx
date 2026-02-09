@@ -1,13 +1,20 @@
 import React from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, FileText } from 'lucide-react';
+import { ArrowLeft, FileText, Scale, Shield, AlertCircle, Clock, Globe } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { SEO } from "@/components/SEO";
 import { SubscriptionActions } from "@/components/SubscriptionActions";
 
 const Terms = () => {
     return (
         <div className="container mx-auto px-4 py-12 md:py-24 max-w-4xl">
+            <SEO
+                title="Terms of Use"
+                description="The terms and conditions for using this website and its services."
+                keywords="Terms of Use, Legal Agreement, User Terms"
+                url="/legal/terms"
+            />
             <Button variant="ghost" asChild className="mb-8 hover:bg-transparent hover:text-primary">
                 <Link to="/" className="flex items-center gap-2">
                     <ArrowLeft className="w-4 h-4" /> Back to Home

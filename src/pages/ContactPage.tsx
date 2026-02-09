@@ -2,7 +2,8 @@ import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Linkedin, Globe, MessageCircle, Send, MapPin } from "lucide-react";
+import { Mail, MessageSquare, Linkedin, Send, Scale, MessageCircle, MapPin, Globe } from "lucide-react";
+import { SEO } from "@/components/SEO";
 import { useData } from "@/contexts/DataContext";
 import ContactForm from "@/components/ContactForm";
 import { SubscriptionActions } from "@/components/SubscriptionActions";
@@ -25,7 +26,13 @@ const ContactPage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background py-16 md:py-24 relative overflow-hidden">
+    <div className="min-h-screen bg-background pt-32 pb-24 relative overflow-hidden">
+      <SEO
+        title="Contact Me"
+        description="Let's discuss collaboration opportunities in Financial Crime Compliance, AML/CFT, or Blockchain regulations."
+        keywords="Contact Efstathios Georgopoulos, Compliance Consulting, AML Advisor Madrid, Blockchain Compliance Expert"
+        url="/contact"
+      />
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/3 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />

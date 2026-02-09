@@ -1,13 +1,20 @@
 import React from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Cookie } from 'lucide-react';
+import { ArrowLeft, Cookie, Shield, Info, Settings, Clock, ExternalLink } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { SEO } from "@/components/SEO";
 import { SubscriptionActions } from "@/components/SubscriptionActions";
 
 const Cookies = () => {
     return (
         <div className="container mx-auto px-4 py-12 md:py-24 max-w-4xl">
+            <SEO
+                title="Cookies Policy"
+                description="Information on how we use cookies to enhance your browsing experience."
+                keywords="Cookies Policy, Privacy, Data Protection"
+                url="/legal/cookies"
+            />
             <Button variant="ghost" asChild className="mb-8 hover:bg-transparent hover:text-primary">
                 <Link to="/" className="flex items-center gap-2">
                     <ArrowLeft className="w-4 h-4" /> Back to Home

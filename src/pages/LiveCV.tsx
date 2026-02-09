@@ -2,10 +2,17 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Download, ExternalLink, ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { SEO } from '@/components/SEO';
 
 const LiveCV = () => {
     return (
         <div className="container mx-auto px-4 py-8 min-h-screen flex flex-col">
+            <SEO
+                title="Live CV"
+                description="View my interactive and up-to-date professional curriculum vitae."
+                keywords="Efstathios Georgopoulos CV, Professional Resume, Compliance Expert CV"
+                url="/cv-live"
+            />
             <div className="flex justify-between items-center mb-6">
                 <Button variant="ghost" asChild className="gap-2">
                     <Link to="/">

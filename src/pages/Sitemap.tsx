@@ -2,6 +2,7 @@ import React from 'react';
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Map, ExternalLink } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { SEO } from "@/components/SEO";
 
 const Sitemap = () => {
     const sections = [
@@ -38,7 +39,13 @@ const Sitemap = () => {
     ];
 
     return (
-        <div className="container mx-auto px-4 py-12 md:py-24 max-w-4xl">
+        <div className="container mx-auto px-4 py-8 md:py-20 mt-16 max-w-6xl">
+            <SEO
+                title="Sitemap"
+                description="Overview of the website structure and quick navigation to all sections."
+                keywords="Sitemap, Navigation, Website Structure"
+                url="/sitemap"
+            />
             <Button variant="ghost" asChild className="mb-8 hover:bg-transparent hover:text-primary">
                 <Link to="/" className="flex items-center gap-2">
                     <ArrowLeft className="w-4 h-4" /> Back to Home

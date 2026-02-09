@@ -1,7 +1,9 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Calendar, Clock, ExternalLink, Linkedin, ArrowRight } from "lucide-react";
+import { ArrowRight, Search, Tag, Calendar, Clock, Bookmark, Filter, ExternalLink, Linkedin } from "lucide-react";
+import { Link } from "react-router-dom";
+import { SEO } from "@/components/SEO";
 import { useData } from "@/contexts/DataContext";
 
 const BlogListing = () => {
@@ -19,7 +21,13 @@ const BlogListing = () => {
   const regularArticles = visibleArticles.filter(a => !a.featured);
 
   return (
-    <div className="min-h-screen bg-background py-16 md:py-24 relative overflow-hidden">
+    <div className="min-h-screen bg-background pt-32 pb-24 relative overflow-hidden">
+      <SEO
+        title="Compliance Insights Blog"
+        description="Latest insights on Financial Crime Compliance, AML/CFT regulations, and Blockchain forensics."
+        keywords="FinCrime Blog, AML Insights, Crypto Regulation News, Blockchain Forensics Articles"
+        url="/blog"
+      />
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/4 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />

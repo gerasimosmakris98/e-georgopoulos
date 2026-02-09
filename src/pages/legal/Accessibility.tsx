@@ -4,10 +4,17 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft, Accessibility as AccessIcon } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { SubscriptionActions } from "@/components/SubscriptionActions";
+import { SEO } from "@/components/SEO";
 
 const Accessibility = () => {
     return (
         <div className="container mx-auto px-4 py-12 md:py-24 max-w-4xl">
+            <SEO
+                title="Accessibility Statement"
+                description="Our commitment to ensuring digital accessibility for people with disabilities."
+                keywords="Accessibility Statement, WCAG 2.1, Inclusion"
+                url="/legal/accessibility"
+            />
             <Button variant="ghost" asChild className="mb-8 hover:bg-transparent hover:text-primary">
                 <Link to="/" className="flex items-center gap-2">
                     <ArrowLeft className="w-4 h-4" /> Back to Home

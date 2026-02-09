@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useInView } from "react-intersection-observer";
 import Hero from "@/components/Hero";
 import RiskCalculator from "@/components/compliance/RiskCalculator";
+import { SEO } from "@/components/SEO";
 
 const Home = () => {
   const { ref: heroRef, inView: heroInView } = useInView({ triggerOnce: true });
@@ -32,6 +33,7 @@ const Home = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEO />
       {/* Hero Section */}
       <div ref={heroRef} className={`transition-opacity duration-1000 ${heroInView ? 'opacity-100' : 'opacity-0'}`}>
         <Hero />

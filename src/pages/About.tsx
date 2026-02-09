@@ -95,10 +95,11 @@ const About: React.FC = () => {
   );
 
   return (
-    <div className="container mx-auto px-4 md:px-6 py-12 md:py-16">
+    <div className="min-h-screen bg-background pt-32 pb-24 relative overflow-hidden">
       <SEO
-        title="About Me"
-        description="Learn about Efstathios Georgopoulos, a multilingual Financial Crime Compliance expert and Blockchain Specialist based in Madrid."
+        title="About My Journey"
+        description="Learn about my background in financial crime compliance and my passion for blockchain technology."
+        keywords="Who is Efstathios Georgopoulos, Compliance Expert Madrid, Blockchain Enthusiast"
         url="/about"
       />
       {/* Hero Section */}

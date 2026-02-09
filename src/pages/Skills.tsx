@@ -93,10 +93,11 @@ const Skills: React.FC = () => {
   );
 
   return (
-    <div className="container mx-auto px-4 md:px-6 py-12 md:py-16">
+    <div className="min-h-screen bg-background pt-32 pb-24 relative overflow-hidden">
       <SEO
-        title="Skills"
-        description="Technical and professional skills of Efstathios Georgopoulos, including AML/CFT frameworks, Blockchain Forensics tools, and Languages."
+        title="Core Skills & Expertise"
+        description="Deep expertise in AML/CFT, Blockchain Forensics, Sanctions, and Regulatory Compliance."
+        keywords="Compliance Skills, AML Expertise, Blockchain Forensics Professional, QA Analyst Skills"
         url="/skills"
       />
       {/* Hero Section */}

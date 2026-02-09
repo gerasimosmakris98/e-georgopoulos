@@ -102,10 +102,11 @@ const Services: React.FC = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 md:px-6 py-12 md:py-16">
+    <div className="min-h-screen bg-background pt-32 pb-24 relative overflow-hidden">
       <SEO
-        title="Services"
-        description="Comprehensive Financial Crime Compliance services including AML/CFT, KYC/KYB, Blockchain Forensics, and Regulatory Advisory."
+        title="Compliance & Blockchain Services"
+        description="Bespoke advisory for AML, Blockchain regulation, and risk management."
+        keywords="Compliance Advisory Services, AML Consulting Madrid, Blockchain Audit, Regulatory Gap Analysis"
         url="/services"
         schema={servicesSchema}
       />
