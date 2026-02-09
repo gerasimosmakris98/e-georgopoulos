@@ -11,7 +11,7 @@ const LiveCVModal = () => {
         <Dialog open={isLiveCVOpen} onOpenChange={closeLiveCV}>
             <DialogContent className="max-w-[95vw] w-full h-[90vh] p-0 overflow-hidden bg-background/95 backdrop-blur-xl border-white/10 [&>button]:hidden">
                 <div className="flex flex-col h-full">
-                    <div className="absolute top-4 left-4 z-50">
+                    <div className="absolute top-4 left-4 z-50 flex items-center">
                         <Button
                             variant="ghost"
                             size="sm"
@@ -34,6 +34,9 @@ const LiveCVModal = () => {
                             </svg>
                             Back
                         </Button>
+                        <span className="ml-3 text-xs text-white/50 bg-black/20 px-2 py-1 rounded-md backdrop-blur-sm">
+                            Powered by Notion
+                        </span>
                     </div>
                     <div className="flex-1 w-full bg-white/5 h-full">
                         <iframe

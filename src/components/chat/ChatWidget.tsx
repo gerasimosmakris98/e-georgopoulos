@@ -74,9 +74,10 @@ const ChatWidget = () => {
               openLiveCV();
               assistantContent += "\n\n*(Opening Live CV...)*";
             } else if (name === "navigate_to") {
-              if (args && args.path) {
-                navigate(args.path as string);
-                assistantContent += `\n\n*(Navigating to ${args.path}...)*`;
+              const navigationArgs = args as { path?: string };
+              if (navigationArgs && navigationArgs.path) {
+                navigate(navigationArgs.path);
+                assistantContent += `\n\n*(Navigating to ${navigationArgs.path}...)*`;
               }
             }
           }
@@ -136,7 +137,7 @@ const ChatWidget = () => {
               // Mobile: Full screen minus nav
               "inset-0 top-[0px] w-full h-full rounded-none",
               // Desktop: Compact floating window
-              "sm:inset-auto sm:bottom-24 sm:right-6 sm:w-[400px] sm:h-[600px] sm:max-h-[80vh] sm:rounded-[2rem]"
+              "sm:inset-auto sm:bottom-24 sm:right-6 sm:w-[500px] sm:h-[700px] sm:max-h-[85vh] sm:rounded-[2rem]"
             )}
           >
             {/* Header */}
@@ -250,7 +251,10 @@ const ChatWidget = () => {
                   <Send className={cn("w-4 h-4", input.trim() && "ml-0.5")} />
                 </Button>
               </div>
-              <div className="text-center mt-2">
+              <div className="text-center mt-3 space-y-1">
+                <p className="text-[10px] text-zinc-500">
+                  By messaging, you agree to our <a href="/legal/terms" className="underline hover:text-zinc-300">Terms & Conditions</a>.
+                </p>
                 <p className="text-[10px] text-zinc-600">AI can make mistakes. Verify important info.</p>
               </div>
             </div>

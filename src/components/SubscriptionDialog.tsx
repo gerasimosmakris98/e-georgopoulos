@@ -36,6 +36,9 @@ export const SubscriptionDialog = () => {
                         </svg>
                         Back
                     </Button>
+                    <span className="ml-4 text-xs text-muted-foreground bg-white/80 px-2 py-1 rounded-md mb-2 inline-block">
+                        Opens in Notion
+                    </span>
                 </div>
                 <div className="flex-1 overflow-auto bg-white">
                     {subscribeState === "subscribe" && (
