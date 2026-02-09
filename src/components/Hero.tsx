@@ -97,7 +97,7 @@ const Hero = () => {
                     </Button>
                   </TooltipTrigger>
                   <TooltipContent>
-                    <p>Opens contact form</p>
+                    <p>Opens in Notion</p>
                   </TooltipContent>
                 </Tooltip>
 

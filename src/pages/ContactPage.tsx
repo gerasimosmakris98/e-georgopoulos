@@ -107,7 +107,7 @@ const ContactPage = () => {
                       </Button>
                     </TooltipTrigger>
                     <TooltipContent>
-                      <p>Opens contact form</p>
+                      <p>Opens in Notion</p>
                     </TooltipContent>
                   </Tooltip>
                 </TooltipProvider>
@@ -231,7 +231,7 @@ const ContactPage = () => {
                       </Button>
                     </TooltipTrigger>
                     <TooltipContent>
-                      <p>Opens contact form</p>
+                      <p>Opens in Notion</p>
                     </TooltipContent>
                   </Tooltip>
                 </TooltipProvider>

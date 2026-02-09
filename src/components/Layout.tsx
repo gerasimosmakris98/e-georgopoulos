@@ -246,21 +246,9 @@ const Layout = () => {
 
 
           <div className="border-t border-border/20 mt-8 pt-8 grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
-            <div className="flex flex-wrap gap-4 justify-center md:justify-start">
-              {/* Quick Action Buttons */}
-              <Button variant="ghost" size="sm" className="text-xs hover:text-primary hover:bg-primary/10" onClick={() => document.dispatchEvent(new CustomEvent('open-contact'))}>
-                Contact
-              </Button>
-              <Button variant="ghost" size="sm" className="text-xs hover:text-primary hover:bg-primary/10" onClick={() => document.dispatchEvent(new CustomEvent('open-live-cv'))}>
-                Live CV
-              </Button>
-              <Button variant="ghost" size="sm" className="text-xs hover:text-primary hover:bg-primary/10" onClick={() => document.dispatchEvent(new CustomEvent('open-subscribe'))}>
-                Subscribe
-              </Button>
-            </div>
-            <div className="flex flex-col md:flex-row justify-center md:justify-end items-center gap-4 text-xs">
+            <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-xs w-full">
               <p>&copy; {new Date().getFullYear()} Efstathios Georgopoulos. All rights reserved.</p>
-              <p className="opacity-70 text-center md:text-right">Created by Gerasimos Makris | AI Web Developer<br />Founder of <a href="https://g-makris.com" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">g-makris.com</a></p>
+              <p className="opacity-70 text-center md:text-right">Created by Gerasimos Makris | AI Web Developer | Founder of <a href="https://g-makris.com" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">g-makris.com</a></p>
             </div>
           </div>
         </div>

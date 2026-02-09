@@ -148,7 +148,7 @@ const Resume: React.FC = () => {
                 </Button>
               </TooltipTrigger>
               <TooltipContent>
-                <p>Opens interactive CV in Notion</p>
+                <p>Opens in Notion</p>
               </TooltipContent>
             </Tooltip>
 
