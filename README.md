@@ -13,8 +13,8 @@ Built with modern web technologies for high performance and design precision.
 *   **Language:** [TypeScript](https://www.typescriptlang.org/)
 *   **Styling:** [Tailwind CSS](https://tailwindcss.com/)
 *   **UI Components:** [shadcn/ui](https://ui.shadcn.com/)
-*   **Backend/Auth:** [Supabase](https://supabase.com/)
-*   **Lovable Project:** [Dashboard](https://lovable.dev/projects/69aa95af-981a-492f-88a2-7f43534b181c)
+*   **Hosting:** [Firebase Hosting](https://firebase.google.com/docs/hosting)
+*   **Analytics:** Google Analytics 4 (GA4)
 
 ## 🛠️ Local Development
 
@@ -37,14 +37,7 @@ Follow these steps to run the project locally on your machine.
     npm install
     ```
 
-3.  **Setup Environment Variables:**
-    Ensure you have a `.env` file in the root directory with your Supabase keys:
-    ```env
-    VITE_SUPABASE_URL=your_url_here
-    VITE_SUPABASE_ANON_KEY=your_key_here
-    ```
-
-4.  **Run the development server:**
+3.  **Run the development server:**
     ```bash
     npm run dev
     ```
@@ -60,8 +53,20 @@ npm run build
 
 ## ☁️ Deployment
 
-This project is configured for deployment via the **Lovable Project Preview**.
+This project is configured for **Firebase Hosting**.
 
-1.  Go to the [Lovable Project Dashboard](https://lovable.dev/projects/69aa95af-981a-492f-88a2-7f43534b181c).
-2.  Open the **Preview**.
-3.  Click **Publish**.
+1.  **Install Firebase Tools (if not installed):**
+    ```bash
+    npm install -g firebase-tools
+    ```
+
+2.  **Login to Firebase:**
+    ```bash
+    firebase login
+    ```
+
+3.  **Deploy:**
+    ```bash
+    npm run build
+    firebase deploy
+    ```
