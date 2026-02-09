@@ -23,15 +23,12 @@ const CookieConsent = () => {
     const consentType = accepted ? 'accepted' : 'rejected';
     localStorage.setItem('cookie_consent', consentType);
 
-    // Generate a simple visitor ID
-    const visitorId = localStorage.getItem('visitor_id') || crypto.randomUUID();
-    localStorage.setItem('visitor_id', visitorId);
+    // Synchronize with GA4 and other non-essential scripts
+    window.dispatchEvent(new CustomEvent('cookieConsentUpdated', { detail: { accepted } }));
 
     // Update UI immediately (Optimistic)
     setIsAnimating(false);
     setTimeout(() => setIsVisible(false), 300);
-
-    // Backend disconnected - No database insert
   };
 
   if (!isVisible) return null;
@@ -45,8 +42,11 @@ const CookieConsent = () => {
       aria-label="Cookie Consent Banner"
     >
       <div className="container mx-auto max-w-4xl">
-        <div className="glass-effect rounded-xl p-4 md:p-6 border border-border/50 shadow-2xl">
-          <div className="flex flex-col md:flex-row items-start md:items-center gap-4">
+        <div className="glass-card-elevated rounded-2xl p-5 md:p-8 border border-white/10 shadow-2xl relative overflow-hidden group">
+          {/* Subtle glow effect */}
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-primary/5 opacity-50 pointer-events-none" />
+
+          <div className="relative flex flex-col md:flex-row items-start md:items-center gap-6">
             <div className="flex items-start gap-3 flex-1">
               <div className="p-2 rounded-full bg-primary/10 shrink-0">
                 <Cookie className="w-5 h-5 text-primary" />

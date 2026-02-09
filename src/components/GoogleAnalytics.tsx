@@ -14,23 +14,42 @@ export const GoogleAnalytics = ({ gaId }: { gaId: string }) => {
     useEffect(() => {
         if (!gaId) return;
 
-        // Initialize GA4
-        const script = document.createElement('script');
-        script.src = `https://www.googletagmanager.com/gtag/js?id=${gaId}`;
-        script.async = true;
-        document.head.appendChild(script);
+        const initGA = () => {
+            // Check for explicit consent
+            const consent = localStorage.getItem('cookie_consent');
+            if (consent !== 'accepted') return;
 
-        window.dataLayer = window.dataLayer || [];
-        function gtag(...args: any[]) {
-            window.dataLayer.push(args);
-        }
-        window.gtag = gtag;
-        gtag('js', new Date());
-        gtag('config', gaId);
+            // Initialize GA4 only if not already present
+            if (window.gtag) return;
+
+            const script = document.createElement('script');
+            script.src = `https://www.googletagmanager.com/gtag/js?id=${gaId}`;
+            script.async = true;
+            document.head.appendChild(script);
+
+            window.dataLayer = window.dataLayer || [];
+            function gtag(...args: any[]) {
+                window.dataLayer.push(args);
+            }
+            window.gtag = gtag;
+            gtag('js', new Date());
+            gtag('config', gaId);
+        };
+
+        // Initial check
+        initGA();
+
+        // Listen for consent updates
+        const handleConsentUpdate = (e: any) => {
+            if (e.detail?.accepted) {
+                initGA();
+            }
+        };
+
+        window.addEventListener('cookieConsentUpdated', handleConsentUpdate);
 
         return () => {
-            // Cleanup if needed, though usually GA scripts persist
-            document.head.removeChild(script);
+            window.removeEventListener('cookieConsentUpdated', handleConsentUpdate);
         };
     }, [gaId]);
 

@@ -99,9 +99,22 @@ const Accessibility = () => {
                     </section>
 
                     <section>
-                        <h2 className="text-xl font-bold text-foreground mb-4">6. Enforcement Procedure</h2>
+                        <h2 className="text-xl font-bold text-foreground mb-4">6. How We Test</h2>
+                        <p className="mb-4">
+                            We regularly evaluate the accessibility of our website using a combination of manual and automated testing methods:
+                        </p>
+                        <ul className="list-disc pl-6 space-y-1">
+                            <li>Automated testing with <strong>Google Lighthouse</strong> and <strong>axe-core</strong>.</li>
+                            <li>Manual navigation testing using only a keyboard.</li>
+                            <li>Screen reader testing with <strong>NVDA</strong> (Windows) and <strong>VoiceOver</strong> (iOS/macOS).</li>
+                            <li>Color contrast verification using professional design tools.</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2 className="text-xl font-bold text-foreground mb-4">7. Enforcement Procedure</h2>
                         <p>
-                            If you are not satisfied with our response, you may contact the <strong>Ministerio de Asuntos Económicos y Transformación Digital</strong> (Spain) or your local equality body.
+                            If you are not satisfied with our response or find our efforts insufficient, you may contact the <strong>Ministerio de Asuntos Económicos y Transformación Digital</strong> in Spain or your local equality body for further assistance.
                         </p>
                     </section>
 
