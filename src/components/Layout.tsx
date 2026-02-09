@@ -26,8 +26,8 @@ const Layout = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
-  // REPLACE WITH YOUR ACTUAL GA MEASUREMENT ID
-  const GA_MEASUREMENT_ID = "G-7RLKYQ54K8";
+  // GA4 MEASUREMENT ID
+  const GA_MEASUREMENT_ID = "G-WVSZ11W8XG";
 
   // Scroll to top is handled by ScrollToTop component in App.tsx now, 
   // but keeping this here implicitly if passing simple children was supported. 
