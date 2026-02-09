@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useCallback } from 'react';
 import { useLocation } from 'react-router-dom';
 
 declare global {
@@ -11,6 +11,17 @@ declare global {
 export const GoogleAnalytics = ({ gaId }: { gaId: string }) => {
     const location = useLocation();
 
+    const trackPageView = useCallback(() => {
+        if (!gaId || !window.gtag) return;
+
+        window.gtag('config', gaId, {
+            page_path: location.pathname + location.search,
+            page_title: document.title,
+            // Ensure first-party cookies are sent immediately
+            send_page_view: true
+        });
+    }, [location, gaId]);
+
     useEffect(() => {
         if (!gaId) return;
 
@@ -19,10 +30,14 @@ export const GoogleAnalytics = ({ gaId }: { gaId: string }) => {
             const consent = localStorage.getItem('cookie_consent');
             if (consent !== 'accepted') return;
 
-            // Initialize GA4 only if not already present
-            if (window.gtag) return;
+            // Initialize GA4 only if script not already present
+            if (document.getElementById('ga4-script')) {
+                trackPageView(); // Just track if already init
+                return;
+            }
 
             const script = document.createElement('script');
+            script.id = 'ga4-script';
             script.src = `https://www.googletagmanager.com/gtag/js?id=${gaId}`;
             script.async = true;
             document.head.appendChild(script);
@@ -32,14 +47,15 @@ export const GoogleAnalytics = ({ gaId }: { gaId: string }) => {
                 window.dataLayer.push(args);
             }
             window.gtag = gtag;
+
             gtag('js', new Date());
-            gtag('config', gaId);
+            trackPageView();
         };
 
-        // Initial check
+        // Initial check on mount
         initGA();
 
-        // Listen for consent updates
+        // Listen for consent updates (from CookieConsent component)
         const handleConsentUpdate = (e: any) => {
             if (e.detail?.accepted) {
                 initGA();
@@ -47,20 +63,10 @@ export const GoogleAnalytics = ({ gaId }: { gaId: string }) => {
         };
 
         window.addEventListener('cookieConsentUpdated', handleConsentUpdate);
-
         return () => {
             window.removeEventListener('cookieConsentUpdated', handleConsentUpdate);
         };
-    }, [gaId]);
-
-    // Track page views on route change
-    useEffect(() => {
-        if (!gaId || !window.gtag) return;
-
-        window.gtag('config', gaId, {
-            page_path: location.pathname + location.search,
-        });
-    }, [location, gaId]);
+    }, [gaId, trackPageView]);
 
     return null;
 };
