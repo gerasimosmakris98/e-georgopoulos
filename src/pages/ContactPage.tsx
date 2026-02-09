@@ -94,23 +94,14 @@ const ContactPage = () => {
                 <p className="text-muted-foreground mb-6 text-sm">
                   Have a specific inquiry? Send me a message and I'll respond as soon as possible.
                 </p>
-                <TooltipProvider>
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <Button
-                        variant="outline"
-                        className="w-full h-11 rounded-xl glass-panel border-white/5 hover:border-primary/20 hover:text-primary"
-                        onClick={() => setIsFormOpen(true)}
-                      >
-                        <Send className="w-4 h-4 mr-2" />
-                        Open Contact Form
-                      </Button>
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      <p>Opens contact form</p>
-                    </TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
+                <Button
+                  variant="outline"
+                  className="w-full h-11 rounded-xl glass-panel border-white/5 hover:border-primary/20 hover:text-primary"
+                  onClick={() => setIsFormOpen(true)}
+                >
+                  <Send className="w-4 h-4 mr-2" />
+                  Open Contact Form
+                </Button>
               </CardContent>
             </Card>
           </div>
@@ -217,24 +208,15 @@ const ContactPage = () => {
                     LinkedIn
                   </a>
                 </Button>
-                <TooltipProvider>
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <Button
-                        variant="outline"
-                        size="default"
-                        onClick={() => setIsFormOpen(true)}
-                        className="flex-1 h-11 rounded-xl glass-panel border-white/5 hover:border-primary/20 hover:text-primary"
-                      >
-                        <MessageCircle className="w-4 h-4 mr-2" />
-                        Send Message
-                      </Button>
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      <p>Opens contact form</p>
-                    </TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
+                <Button
+                  variant="outline"
+                  size="default"
+                  onClick={() => setIsFormOpen(true)}
+                  className="flex-1 h-11 rounded-xl glass-panel border-white/5 hover:border-primary/20 hover:text-primary"
+                >
+                  <MessageCircle className="w-4 h-4 mr-2" />
+                  Send Message
+                </Button>
               </div>
             </div>
           </Card>

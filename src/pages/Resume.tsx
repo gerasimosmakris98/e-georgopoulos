@@ -152,19 +152,12 @@ const Resume: React.FC = () => {
               </TooltipContent>
             </Tooltip>
 
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button onClick={() => {
-                  trackEvent(ANALYTICS_EVENTS.CONTACT_SUBMIT, { location: 'resume_header' });
-                  openContact();
-                }} className="shadow-premium">
-                  <Mail className="mr-2 w-4 h-4" /> Contact Me
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>Opens contact form</p>
-              </TooltipContent>
-            </Tooltip>
+            <Button onClick={() => {
+              trackEvent(ANALYTICS_EVENTS.CONTACT_SUBMIT, { location: 'resume_header' });
+              openContact();
+            }} className="shadow-premium">
+              <Mail className="mr-2 w-4 h-4" /> Contact Me
+            </Button>
           </TooltipProvider>
         </div>
       </div>

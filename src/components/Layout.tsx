@@ -244,9 +244,24 @@ const Layout = () => {
             </div>
           </div>
 
-          <div className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-border/20 text-xs">
-            <p>&copy; {new Date().getFullYear()} Efstathios Georgopoulos. All rights reserved.</p>
-            <p className="mt-2 md:mt-0">Designed with precision in Madrid.</p>
+
+          <div className="border-t border-border/20 mt-8 pt-8 grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
+            <div className="flex flex-wrap gap-4 justify-center md:justify-start">
+              {/* Quick Action Buttons */}
+              <Button variant="ghost" size="sm" asChild className="text-xs hover:text-primary hover:bg-primary/10">
+                <Link to="/contact">Contact</Link>
+              </Button>
+              <Button variant="ghost" size="sm" asChild className="text-xs hover:text-primary hover:bg-primary/10">
+                <Link to="/resume">Resume</Link>
+              </Button>
+              <Button variant="ghost" size="sm" className="text-xs hover:text-primary hover:bg-primary/10" onClick={() => document.dispatchEvent(new CustomEvent('open-subscribe'))}>
+                Subscribe
+              </Button>
+            </div>
+            <div className="flex flex-col md:flex-row justify-center md:justify-end items-center gap-4 text-xs">
+              <p>&copy; {new Date().getFullYear()} Efstathios Georgopoulos. All rights reserved.</p>
+              <p className="opacity-50">Designed in Madrid.</p>
+            </div>
           </div>
         </div>
       </footer>
