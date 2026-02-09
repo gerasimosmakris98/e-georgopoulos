@@ -1,5 +1,5 @@
 
-import { GoogleGenerativeAI } from "@google/generative-ai";
+import { GoogleGenerativeAI, SchemaType, type Tool } from "@google/generative-ai";
 
 // Initialize Gemini
 // Note: In a real production app, you should proxy this through a backend to hide the key.
@@ -39,17 +39,17 @@ export interface ChatMessage {
 }
 
 // Function Definitions
-const tools = [
+const tools: Tool[] = [
     {
         functionDeclarations: [
             {
                 name: "navigate_to",
                 description: "Navigates the user to a specific page on the website.",
                 parameters: {
-                    type: "OBJECT",
+                    type: SchemaType.OBJECT,
                     properties: {
                         path: {
-                            type: "STRING",
+                            type: SchemaType.STRING,
                             description: "The path to navigate to (e.g., '/', '/about', '/resume', '/services', '/contact', '/blog').",
                         },
                     },
