@@ -37,10 +37,11 @@ const ChatWidget = () => {
     }
   }, [isOpen]);
 
-  const handleSend = async () => {
-    if (!input.trim() || isLoading) return;
+  const handleSend = async (messageOverride?: string) => {
+    const textToSend = messageOverride || input.trim();
+    if (!textToSend || isLoading) return;
 
-    const userMessage = { role: 'user' as const, content: input.trim() };
+    const userMessage = { role: 'user' as const, content: textToSend };
     const newMessages = [...messages, userMessage];
     setMessages(newMessages);
     setInput('');
@@ -53,7 +54,7 @@ const ChatWidget = () => {
         parts: [{ text: m.content }]
       }));
 
-      const stream = await GeminiService.streamChat(history, input.trim(), `Current Path: ${location.pathname}`);
+      const stream = await GeminiService.streamChat(history, textToSend, `Current Path: ${location.pathname}`);
 
       let assistantContent = "";
       setMessages(prev => [...prev, { role: 'assistant', content: "" }]);
@@ -137,7 +138,7 @@ const ChatWidget = () => {
               // Mobile: Full screen minus nav
               "inset-0 top-[0px] w-full h-full rounded-none",
               // Desktop: Compact floating window
-              "sm:inset-auto sm:bottom-24 sm:right-6 sm:w-[500px] sm:h-[700px] sm:max-h-[85vh] sm:rounded-[2rem]"
+              "sm:inset-auto sm:bottom-24 sm:right-6 sm:w-[600px] sm:h-[800px] sm:max-h-[85vh] sm:rounded-[2rem]"
             )}
           >
             {/* Header */}
@@ -209,6 +210,26 @@ const ChatWidget = () => {
                 </motion.div>
               ))}
 
+              {/* Suggested Questions Pills */}
+              {messages.length === 1 && !isLoading && (
+                <div className="flex flex-wrap gap-2 px-2">
+                  {[
+                    "What services do you offer?",
+                    "Show me your Live CV",
+                    "How much does it cost?",
+                    "Subscribe to newsletter"
+                  ].map((q, i) => (
+                    <button
+                      key={i}
+                      onClick={() => handleSend(q)}
+                      className="text-xs bg-zinc-800/50 hover:bg-zinc-700/50 border border-white/5 text-zinc-300 px-3 py-1.5 rounded-full transition-colors whitespace-nowrap"
+                    >
+                      {q}
+                    </button>
+                  ))}
+                </div>
+              )}
+
               {isLoading && (
                 <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex gap-3">
                   <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-primary/20 to-accent/20 flex items-center justify-center shrink-0">
@@ -238,7 +259,7 @@ const ChatWidget = () => {
                   disabled={isLoading}
                 />
                 <Button
-                  onClick={handleSend}
+                  onClick={() => handleSend()}
                   disabled={!input.trim() || isLoading}
                   size="icon"
                   className={cn(

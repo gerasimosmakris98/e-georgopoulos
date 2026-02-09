@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Badge } from "@/components/ui/badge";
 import { ChevronDown, Linkedin, MapPin, Star, Award, TrendingUp, Globe } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -80,29 +81,46 @@ const Hero = () => {
 
             {/* CTA Buttons - Compact */}
             <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center mb-6 md:mb-12 px-4">
-              <Button
-                variant="default"
-                size="default"
-                onClick={() => {
-                  trackEvent(ANALYTICS_EVENTS.CONTACT_SUBMIT, { location: 'hero' });
-                  openContact();
-                }}
-                className="w-full sm:w-auto min-w-[160px] md:min-w-[180px] text-sm md:text-lg h-11 md:h-12 font-medium shadow-premium hover:scale-105 transition-transform"
-              >
-                Get In Touch
-              </Button>
-              <Button
-                variant="outline"
-                size="default"
-                onClick={() => {
-                  trackEvent(ANALYTICS_EVENTS.VIEW_CV, { location: 'hero' });
-                  openLiveCV();
-                }}
-                className="w-full sm:w-auto min-w-[160px] md:min-w-[180px] text-sm md:text-lg h-11 md:h-12 font-medium glass-effect border-white/20 hover:bg-white/10"
-              >
-                <Award className="mr-2 md:mr-3 w-4 md:w-5 h-4 md:h-5" />
-                View Live CV
-              </Button>
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button
+                      variant="default"
+                      size="default"
+                      onClick={() => {
+                        trackEvent(ANALYTICS_EVENTS.CONTACT_SUBMIT, { location: 'hero' });
+                        openContact();
+                      }}
+                      className="w-full sm:w-auto min-w-[160px] md:min-w-[180px] text-sm md:text-lg h-11 md:h-12 font-medium shadow-premium hover:scale-105 transition-transform"
+                    >
+                      Get In Touch
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Opens contact form</p>
+                  </TooltipContent>
+                </Tooltip>
+
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button
+                      variant="outline"
+                      size="default"
+                      onClick={() => {
+                        trackEvent(ANALYTICS_EVENTS.VIEW_CV, { location: 'hero' });
+                        openLiveCV();
+                      }}
+                      className="w-full sm:w-auto min-w-[160px] md:min-w-[180px] text-sm md:text-lg h-11 md:h-12 font-medium glass-effect border-white/20 hover:bg-white/10"
+                    >
+                      <Award className="mr-2 md:mr-3 w-4 md:w-5 h-4 md:h-5" />
+                      View Live CV
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Opens interactive CV in Notion</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
             </div>
           </div>
 
