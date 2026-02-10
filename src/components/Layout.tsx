@@ -21,6 +21,8 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
+import BackgroundAnimation from "@/components/BackgroundAnimation";
+
 const Layout = () => {
   const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -89,7 +91,12 @@ const Layout = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background flex flex-col">
+    <div className="min-h-screen bg-background flex flex-col relative">
+      {location.pathname === '/' && (
+        <div className="fixed inset-0 z-0">
+          <BackgroundAnimation />
+        </div>
+      )}
       <SEO schema={personSchema} />
       <GoogleAnalytics gaId={GA_MEASUREMENT_ID} />
       <nav

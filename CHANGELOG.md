@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.3.2] - 2026-02-10
+
+### Added
+- **Background Animation**: "Connected" orb animation (`BackgroundAnimation.tsx`) that flows from the Header through the Hero section.
+- **Home Page Integration**: Global background animation enabled specifically for the landing page (`/`).
+
+### Changed
+- **UI Polish**:
+    - **Dropdowns**: Unified border styles and added "frosty" glass effect (`backdrop-blur-2xl`, `bg-background/80`).
+    - **Hero Section**: Made transparent to reveal global background animation.
+    - **Header**: Enhanced transparency and blur for better layering.
+
 ## [0.3.1] - 2026-02-08
 
 ### Documentation
