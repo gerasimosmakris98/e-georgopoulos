@@ -6,6 +6,7 @@ import { ChevronDown, Linkedin, MapPin, Star, Award, TrendingUp, Globe } from "l
 import { Link } from "react-router-dom";
 import { useUI } from "@/contexts/UIContext";
 import { trackEvent, ANALYTICS_EVENTS } from "@/lib/analytics";
+import BackgroundAnimation from "@/components/BackgroundAnimation";
 
 const Hero = () => {
   const { openLiveCV, openContact } = useUI();
@@ -40,7 +41,7 @@ const Hero = () => {
 
   return (
     <section id="hero" className="relative bg-background overflow-hidden pt-0">
-      {/* Background removed as per request */}
+      <BackgroundAnimation />
 
 
 
