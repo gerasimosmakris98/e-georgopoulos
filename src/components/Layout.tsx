@@ -96,8 +96,8 @@ const Layout = () => {
         className={cn(
           "fixed top-4 left-0 right-0 z-50 transition-all duration-500 ease-in-out mx-4 rounded-2xl border",
           isScrolled
-            ? "bg-background/70 backdrop-blur-xl border-white/10 shadow-glass py-2 max-w-7xl mx-auto"
-            : "bg-transparent border-transparent shadow-none py-4 max-w-7xl mx-auto"
+            ? "bg-background/70 backdrop-blur-xl border-white/10 shadow-glass py-2 max-w-screen-2xl mx-auto"
+            : "bg-transparent border-transparent shadow-none py-4 max-w-screen-2xl mx-auto"
         )}
       >
         <div className="px-4 md:px-6">
